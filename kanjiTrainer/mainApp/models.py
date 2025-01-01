@@ -2,7 +2,6 @@ from datetime import datetime
 from django.db import models
 from django.db.models import ForeignKey
 
-
 class User(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
@@ -22,6 +21,8 @@ class Kanji(models.Model):
     woerter =  models.CharField(max_length=500, null=True, blank=True)
     failedCount = models.IntegerField(null=True, blank=True, default=0)
     lastPositive = models.DateField(default=datetime.now)
+    lastNegative = models.DateField(default=datetime.now)
+    lastStuddied = models.DateField(default=datetime.now)
     language = ForeignKey(Language, on_delete=models.PROTECT, default=0)
     user = ForeignKey(User, on_delete=models.PROTECT, default=0)
 
