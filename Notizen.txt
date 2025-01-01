@@ -1,0 +1,7 @@
+Erstelle django projekt: django-admin startproject projektname
+Erstelle django app: python manage.py startapp appname
+
+DB Updates commit: python manage.py makemigrations
+DB Updates finalisieren: python manage.py migrate
+
+Superuser/Admin anlegen: python manage.py createsuperuser
