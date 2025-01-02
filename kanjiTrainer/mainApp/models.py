@@ -20,11 +20,19 @@ class Kanji(models.Model):
     japLesungen = models.CharField(max_length=500, null=True, blank=True)
     woerter =  models.CharField(max_length=500, null=True, blank=True)
     failedCount = models.IntegerField(null=True, blank=True, default=0)
-    lastPositive = models.DateField(default=datetime.now)
-    lastNegative = models.DateField(default=datetime.now)
-    lastStuddied = models.DateField(default=datetime.now)
+    lastPositive = models.DateField(null=True, blank=True)
+    lastNegative = models.DateField(null=True, blank=True)
+    lastStuddied = models.DateField(null=True, blank=True)
     language = ForeignKey(Language, on_delete=models.PROTECT, default=0)
     user = ForeignKey(User, on_delete=models.PROTECT, default=0)
 
     def __str__(self):
         return str(self.kanji) + ' - ' + str(self.bedeutungen)
+
+class Limit(models.Model):
+    maxItems = models.IntegerField(default=0)
+    language = ForeignKey(Language, on_delete=models.PROTECT, default=0)
+    user = ForeignKey(User, on_delete=models.PROTECT, default=0)
+
+    def __str__(self):
+        return str(self.maxItems)

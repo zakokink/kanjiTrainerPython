@@ -25,7 +25,8 @@ SECRET_KEY = "django-insecure-*-y&+eww$gz==(apxv_^+=jwk=y_qb*zz1l$ss!m433j(d2ls^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['80.108.240.70','127.0.0.1', '192.168.0.115', '192.168.0.242']
 
 
 # Application definition
@@ -72,6 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "kanjiTrainer.wsgi.application"
 
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

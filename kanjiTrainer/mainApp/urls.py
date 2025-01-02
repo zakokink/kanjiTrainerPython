@@ -7,8 +7,20 @@ urlpatterns = [
          name="kanji-user-view"),
 
     path('kanjis', views.KanjiListCreate.as_view(), name="user-view-create"),
-    path('kanjisForUserForLanguage/<int:userId>/<int:languageId>', views.AllKanjisForUserAndLanguage.as_view(),
+    path('kanjisForUserForLanguage/<int:userId>/<int:languageId>/<int:limit>', views.AllKanjisForUserAndLanguage.as_view(),
          name="kanjis-user-language-view-create"),
+
+    path('kanjisForUserForLanguageOrderByLastStuddied/<int:userId>/<int:languageId>',
+         views.AllKanjisForUserAndLanguageOrderByLastStuddied.as_view(),
+         name="kanjis-last-studdied-view-create"),
+
+    path('kanjisForUserForLanguageOrderByLastNegative/<int:userId>/<int:languageId>',
+         views.AllKanjisForUserAndLanguageOrderByLastNegative.as_view(),
+         name="kanjis-last-negative-view-create"),
+
+    path('kanjisForUserForLanguageOrderByFailedCount/<int:userId>/<int:languageId>',
+         views.AllKanjisForUserAndLanguageOrderByFailedCount.as_view(),
+         name="kanjis-failed-count-view-create"),
 
 ]
 
