@@ -77,3 +77,10 @@ class AllKanjisForUserAndLanguageOrderByFailedCount(generics.ListAPIView):
 
         serializer_class = KanjiSerializer(queryset, many=True)
         return Response(data={"data": serializer_class.data})
+
+class KanjiRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Kanji.objects.all()
+    serializer_class = KanjiSerializer
+    lookup_field = "pk"
+
+

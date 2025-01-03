@@ -3,8 +3,7 @@ from . import views
 
 urlpatterns = [
     path("test", views.test, name="test"),
-    path('kanjiById/<int:pk>', views.KanjiListUpdateDestroy.as_view(),
-         name="kanji-user-view"),
+    #path('kanjiById/<int:pk>', views.KanjiListUpdateDestroy.as_view(), name="kanji-user-view"),
 
     path('kanjis', views.KanjiListCreate.as_view(), name="user-view-create"),
     path('kanjisForUserForLanguage/<int:userId>/<int:languageId>/<int:limit>', views.AllKanjisForUserAndLanguage.as_view(),
@@ -21,6 +20,8 @@ urlpatterns = [
     path('kanjisForUserForLanguageOrderByFailedCount/<int:userId>/<int:languageId>',
          views.AllKanjisForUserAndLanguageOrderByFailedCount.as_view(),
          name="kanjis-failed-count-view-create"),
+
+    path('kanjis/<int:pk>', views.KanjiRetrieveUpdateDestroy.as_view(), name="kanji-update"),
 
 ]
 

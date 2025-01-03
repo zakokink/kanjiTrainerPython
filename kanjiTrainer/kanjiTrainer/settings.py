@@ -51,6 +51,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = "kanjiTrainer.urls"
@@ -73,7 +75,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "kanjiTrainer.wsgi.application"
 
-CORS_ALLOW_ALL_ORIGINS = True
+#CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_WHITELIST =('http://80.108.240.70:4245', 'http://192.168.0.115:4245', 'http://192.168.0.242:4200', 'http://localhost:4200')
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
