@@ -22,12 +22,12 @@ class Kanji(models.Model):
     failedCount = models.IntegerField(null=True, blank=True, default=0)
     lastPositive = models.DateField(null=True, blank=True)
     lastNegative = models.DateField(null=True, blank=True)
-    lastStuddied = models.DateField(null=True, blank=True)
+    lastStuddied = models.DateField(null=True, blank=True, default= datetime(2000, 1, 1))
     language = ForeignKey(Language, on_delete=models.PROTECT, default=0)
     user = ForeignKey(User, on_delete=models.PROTECT, default=0)
 
     def __str__(self):
-        return str(self.kanji) + ' - ' + str(self.bedeutungen)
+        return str(self.pk) + ' - ' + str(self.kanji) + ' - ' + str(self.bedeutungen)
 
 class Limit(models.Model):
     maxItems = models.IntegerField(default=0)

@@ -4,7 +4,9 @@ from rest_framework.response import Response
 from .models import Kanji
 from .serializers import KanjiSerializer
 from .repository import getAllKanjisForUserAndLanguage, getAllKanjisForUserAndLanguageOrderByLastStuddied, \
-    getAllKanjisForUserAndLanguageOrderByLastNegative, getAllKanjisForUserAndLanguageOrderByFailedCount
+    getAllKanjisForUserAndLanguageOrderByLastNegative, getAllKanjisForUserAndLanguageOrderByFailedCount, \
+    getAllKanjisForUserAndLanguageOldFirst, getAllKanjisForUserAndLanguageOrderByLastStuddiedFromId
+
 
 def test(request):
     return HttpResponse("Es funktioniert!")
@@ -47,6 +49,40 @@ class AllKanjisForUserAndLanguageOrderByLastStuddied(generics.ListAPIView):
 
         serializer_class = KanjiSerializer(queryset, many=True)
         return Response(data={"data": serializer_class.data})
+
+class AllKanjisForUserAndLanguageOrderByLastStuddiedFromId(generics.ListAPIView):
+    def get(self, request, *args, **kwargs):
+        userId = kwargs.get('userId')
+        languageId = kwargs.get('languageId')
+        limit = kwargs.get('limit')
+        startingId = kwargs.get('startingId')
+
+        queryset = getAllKanjisForUserAndLanguageOrderByLastStuddiedFromId(userId, languageId, limit, startingId)
+
+        if(queryset == None):
+            print("Keine Daten gefunden")
+            return Response(data={"status": 404, "data": None})
+
+        serializer_class = KanjiSerializer(queryset, many=True)
+        return Response(data={"data": serializer_class.data})
+
+
+
+class AllKanjisForUserAndLanguageOldFirst(generics.ListAPIView):
+    def get(self, request, *args, **kwargs):
+        userId = kwargs.get('userId')
+        languageId = kwargs.get('languageId')
+        limit = kwargs.get('limit')
+
+        queryset = getAllKanjisForUserAndLanguageOldFirst(userId, languageId, limit)
+
+        if(queryset == None):
+            print("Keine Daten gefunden")
+            return Response(data={"status": 404, "data": None})
+
+        serializer_class = KanjiSerializer(queryset, many=True)
+        return Response(data={"data": serializer_class.data})
+
 
 class AllKanjisForUserAndLanguageOrderByLastNegative(generics.ListAPIView):
     def get(self, request, *args, **kwargs):
