@@ -76,7 +76,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "kanjiTrainer.wsgi.application"
 
 #CORS_ALLOW_ALL_ORIGINS = True
-CORS_ORIGIN_WHITELIST =('http://80.108.240.70:4245', 'http://192.168.0.115:4245', 'http://192.168.0.242:4200', 'http://localhost:4200')
+CORS_ORIGIN_WHITELIST =('http://80.108.240.70:4237', 'http://192.168.0.115:4245', 'http://192.168.0.242:4200', 'http://localhost:4200')
 
 
 # Database
